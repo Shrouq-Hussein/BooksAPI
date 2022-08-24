@@ -1,0 +1,23 @@
+*{
+    padding: 0%;
+    margin: 0%;
+}
+.title{
+    background-color: green;
+    padding: 2%;
+    color: #fff;
+    text-align: center;
+}
+.subTitle{
+    text-align: start;
+    border-bottom: 2px solid rgb(137, 135, 135);
+}
+.booksSection{
+    height: 30rem;
+}
+.addBookBtn{
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    border-radius: 50%;
+}
