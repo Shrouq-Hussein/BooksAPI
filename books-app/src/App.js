@@ -21,11 +21,27 @@ class App extends React.Component {
   }
 
   componentDidUpdate(perProp,prevState){
+    const { books, currentlyreading,wanttoread,read,openSearch } = this.state;
     if ( prevState.books !== this.state.books){
-        console.log(" books changed","prev:",prevState.books,":current",this.state.books)
+      localStorage.setItem('books', JSON.stringify(books));
+    }
+    if ( prevState.currentlyreading !== this.state.currentlyreading){
+      localStorage.setItem('currentlyreading', JSON.stringify(currentlyreading));
 
     }
-}
+    if ( prevState.wanttoread !== this.state.wanttoread){
+      localStorage.setItem('wanttoread', JSON.stringify(wanttoread));
+
+    }
+    if ( prevState.read !== this.state.read){
+      localStorage.setItem('read', JSON.stringify(read));
+
+    }
+    if(prevState.openSearch !== this.state.openSearch){
+      localStorage.setItem('openSearch', this.state.openSearch);
+    }
+  }
+
 
 
   changeState = (bookList,book) =>{
@@ -62,7 +78,6 @@ class App extends React.Component {
      :
      // old
      this.changeBookSection(bookList,book)
- 
   }
 
   changeBookSection = (bookList,book) =>{
@@ -151,28 +166,23 @@ class App extends React.Component {
      
 
   }
+  componentDidMount(){
+    const  books = JSON.parse(localStorage.getItem("books"))
+    const  currentlyreading = JSON.parse(localStorage.getItem("currentlyreading"))
+    const  wanttoread = JSON.parse(localStorage.getItem("wanttoread"))
+    const  read = JSON.parse(localStorage.getItem("read"))
+    const  openSearch =  localStorage.getItem('openSearch') === "true" ? true : false
+    this.setState({books,currentlyreading,wanttoread,read,openSearch})
+   console.log("did mount",books,openSearch)
 
- 
+  }
+
   render (){
     return (
       this.state.openSearch ?
       <Search openSearch={this.openSearch} Allbooks={this.state.books} changeState={this.changeState}/>
       :<MyReadings openSearch={this.openSearch} currentlyreading={this.state.currentlyreading} read={this.state.read} wanttoread={this.state.wanttoread} changeState={this.changeState} />
 
-
-
-
-      // <BrowserRouter>
-  
-      // <div className="App">
-      //     <Routes>
-      //       {/* default page */}
-      //       <Route path={"/"} element={<MyReadings />} />
-      //       <Route path={"/search"} element={<SearchPage/>} />
-      //       <Route path={"*"}  element={<NotFound/>} />
-      //     </Routes>
-      // </div>
-      // </BrowserRouter>
     )
   }
 }
