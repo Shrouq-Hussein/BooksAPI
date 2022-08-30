@@ -1,6 +1,7 @@
 import React from "react"
 import './myreadings.css';
 import BookCard from "../../components/bookCard/bookcard.js"
+import { Outlet} from  "react-router-dom"
 
 class MyReadings extends React.Component{
     goToSearch =()=>{
@@ -56,9 +57,14 @@ class MyReadings extends React.Component{
                        <div className="booksSection"></div>
                     }
                   </div>
-                <button type="button" className="btn btn-success addBookBtn" onClick={this.goToSearch}>+</button>
-            </div>
+                  
+                
             
+                <button type="button" className="btn btn-success addBookBtn" onClick={this.goToSearch}>+</button>
+              
+                
+            </div>
+                   <Outlet />
             </>
             
         )

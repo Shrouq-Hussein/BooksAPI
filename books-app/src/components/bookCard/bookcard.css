@@ -1,15 +1,20 @@
 .bookCover{
     background-color: rgb(145, 153, 145);
-    height:20rem ;
+    height:10rem ;
     position: relative;
+    width: 100%;
 
+}
+.card{
+    position: relative;
 }
 .bookOptions{
     text-align: center;
     position: absolute;
-    bottom: 25%;
-    right: 1rem;
+    right: 0rem;
+    top: 9rem;
     background-color: green;
     border-radius: 50%;
+    z-index: 5;
 
 }

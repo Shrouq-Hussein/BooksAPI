@@ -2,19 +2,18 @@ import React from 'react'
 import './App.css';
 import MyReadings from "./pages/myReadings/myreadings.js"
 import Search from "./components/searchComponent/search.js"
-import { BrowserRouter, Route, Routes} from "react-router-dom"
-import NotFound from "./pages/notFound.js"
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
-        books:[],
+        books:[], 
         currentlyreading: [],
         wanttoread:[],
         read:[],
         openSearch:false,
     }
+
 }
   openSearch =()=>{
     this.setState({...this.state,openSearch: !this.state.openSearch})
@@ -38,6 +37,7 @@ class App extends React.Component {
 
     }
     if(prevState.openSearch !== this.state.openSearch){
+      console.log(this.state.openSearch)
       localStorage.setItem('openSearch', this.state.openSearch);
     }
   }
@@ -167,13 +167,26 @@ class App extends React.Component {
 
   }
   componentDidMount(){
-    const  books = JSON.parse(localStorage.getItem("books"))
-    const  currentlyreading = JSON.parse(localStorage.getItem("currentlyreading"))
-    const  wanttoread = JSON.parse(localStorage.getItem("wanttoread"))
-    const  read = JSON.parse(localStorage.getItem("read"))
-    const  openSearch =  localStorage.getItem('openSearch') === "true" ? true : false
-    this.setState({books,currentlyreading,wanttoread,read,openSearch})
-   console.log("did mount",books,openSearch)
+    if(localStorage.getItem("books")){
+      const  books = JSON.parse(localStorage.getItem("books"))
+      const  currentlyreading = JSON.parse(localStorage.getItem("currentlyreading"))
+      const  wanttoread = JSON.parse(localStorage.getItem("wanttoread"))
+      const  read = JSON.parse(localStorage.getItem("read"))
+      const  openSearch =  localStorage.getItem('openSearch') === "true" ? true : false
+      this.setState({books,currentlyreading,wanttoread,read,openSearch})
+     console.log("did mount",books,openSearch)
+
+    }
+    else if (localStorage.getItem('openSearch')){
+      const  openSearch =  localStorage.getItem('openSearch') === "true" ? true : false
+      this.setState({...this.state,openSearch})
+
+    }
+    // this.setState({ books:[], 
+    //   currentlyreading: [],
+    //   wanttoread:[],
+    //   read:[],
+    //   openSearch})
 
   }
 
@@ -182,6 +195,8 @@ class App extends React.Component {
       this.state.openSearch ?
       <Search openSearch={this.openSearch} Allbooks={this.state.books} changeState={this.changeState}/>
       :<MyReadings openSearch={this.openSearch} currentlyreading={this.state.currentlyreading} read={this.state.read} wanttoread={this.state.wanttoread} changeState={this.changeState} />
+    
+ 
 
     )
   }

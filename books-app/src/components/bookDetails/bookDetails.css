@@ -1,0 +1,36 @@
+.my-modal-body , .header{
+    display: flex;
+    flex-direction: row;
+}
+.header h1{
+    font-size: x-large;
+}
+.custom-btn-close{
+    border-radius: 50%;
+    position: relative;
+    border:1px solid rgb(231, 231, 231);
+    padding: 3%;
+    width: 2rem;
+    height: 2rem;
+    background-color: #fff;
+
+}
+.custom-btn-close div{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: rgb(63, 62, 62);
+    color: #fff;
+    font-weight: bold;
+    font-size: x-large;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.custom-btn-close div p{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-60%);
+}
