@@ -43,14 +43,17 @@ class Search extends React.Component {
                 .then((res) => {
                     console.log(res.data.docs)
                     const searchResultFiltered = this.filterBooks(res.data.docs)
+                    const searchResults= searchResultFiltered.map((book)=>{
+                        return book={...book,shelf:"none"}
+                    })
                     this.setState({
                       ...this.state,
-                      searchResult: searchResultFiltered,
+                      searchResult: searchResults,
   
                     })
                 }
                 ) 
-            },1000)
+            },500)
             
         }
     }

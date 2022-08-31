@@ -43,7 +43,7 @@ export default function BookDetails() {
                                        
                                     </div>
                                     <div className="ms-5">
-                                        <p>currently reading</p>
+                                        <p>{book.shelf}</p>
                                         <button type="button" className="custom-btn-close" data-bs-dismiss="modal" aria-label="Close"><div><p>-</p></div></button>
                                     </div>
                     
