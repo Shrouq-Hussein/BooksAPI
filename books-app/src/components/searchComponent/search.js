@@ -11,7 +11,7 @@ class Search extends React.Component {
         }
 
         this.searchInput = React.createRef()
-
+        this.timeoutID = ""
     }
 
     filterBooks = (searchResult) => {
@@ -37,6 +37,8 @@ class Search extends React.Component {
    
     componentDidUpdate(prevprop,prevState) {
         if (prevState.searchTerm !== this.state.searchTerm) {
+           clearTimeout(this.timeoutID)
+           this.timeoutID = setTimeout(()=>{
                 axios.get(`https://openlibrary.org/search.json?q=${this.state.searchTerm}`)
                 .then((res) => {
                     console.log(res.data.docs)
@@ -48,6 +50,8 @@ class Search extends React.Component {
                     })
                 }
                 ) 
+            },1000)
+            
         }
     }
 
